@@ -1,24 +1,22 @@
 import { useState } from "react";
 
 const Flashcard = ({ cardData }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const { english, spanish } = cardData;
+const [isFlipped, setIsFlipped] = useState(false);
+const { english, spanish } = cardData;
 
-  return (
+return (
     <>
-      <div
-        className={`h-80 w-80 bg-white rounded-xl shadow-lg relative [perspective:1000px] transition-transform duration-500 ease-in-out ${isFlipped ? "rotate-y-180" : ""}`}
-        onClick={() => setIsFlipped(!isFlipped)}
-      >
-        <div className={`front h-80 w-80 absolute [backface-visibility:hidden] flex justify-center items-center transform transition-transform duration-500 ${isFlipped ? "rotate-y-180" : "rotate-y-0"}`}>
-          {spanish}
+        <div className={`h-80 w-80 bg-white rounded-xl shadow-lg relative [perspective:1000px] [transform-style:preserve-3d] transition-transform duration-500 ease-in-out mx-auto ${isFlipped ? "rotate-y-180" : ""}`}
+            onClick={() => setIsFlipped(!isFlipped)}>
+            <div className={`front absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
+                {spanish}
+            </div>
+            <div className={`back [backface-visibility:hidden] absolute top-0 left-0  flex justify-center items-center h-full w-full transform -rotate-y-180`}>
+                {english}
+            </div>
         </div>
-        <div className={`back h-80 w-80 absolute [backface-visibility:hidden] flex justify-center items-center transform transition-transform duration-500 ${isFlipped ? "rotate-y-0" : "rotate-y-180"}`}>
-          {english}
-        </div>
-      </div>
     </>
-  );
+    );
 };
 
 export default Flashcard;
