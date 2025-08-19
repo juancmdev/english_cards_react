@@ -3,9 +3,7 @@ import Flashcard from "./Flashcard";
 
 
 const CardApp = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-    const cadsPerPage = 8;
-
+    
     const cardData = [
         {
         english: "Hello",
@@ -70,19 +68,35 @@ const CardApp = () => {
         return array;
     };
 
-    const shuffledCards = shuffleArray([...cardData]);
+    const [shuffledCards, setShufledCards] = useState(() => shuffleArray(cardData)) ;
+    
+    const handleShuffle = () => {
+        setShufledCards(shuffleArray(cardData));
+    };
 
+    const [currentPage, setCurrentPage] = useState(0);
+    const cadsPerPage = 8;
 
     const startIndex = currentPage * cadsPerPage;
     const endIndex = startIndex + cadsPerPage;
     const currentCards = shuffledCards.slice(startIndex, endIndex);
 
   return (
-    <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {currentCards.map((card, index) => (
-        <Flashcard key={index} cardData={card} />
-      ))}
-    </div>
+    <>
+        <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {currentCards.map((card, index) => (
+                <Flashcard key={index} cardData={card} />
+            ))}
+        </div>
+        <div className="flex justify-center p-4">
+            <button
+            onClick={handleShuffle}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+            Mezclar
+            </button>
+        </div>
+    </>
   );
 };
 
