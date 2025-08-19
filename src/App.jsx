@@ -1,3 +1,4 @@
+import CardApp from "./components/CardApp";
 
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello</h1>
+      <CardApp/>
     </>
   )
 }
