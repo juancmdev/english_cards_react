@@ -11,7 +11,7 @@ function App() {
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<CardApp />} />
+          <Route path="/vocabulary" element={<CardApp />} />
           <Route path="/verbtobe" element={<VerbToBe />} />
           <Route path="/verbtohave" element={<VerbToHave />} />
           <Route path="/wordsoftheweek" element={<WordsOfTheWeek />} />

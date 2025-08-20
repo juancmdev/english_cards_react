@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 
+const links = [
+  { text: "Vocabulary", path: "/vocabulary", id: 1 },
+  { text: "Verb To Be", path: "/verbtobe", id: 2 },
+  { text: "Verb To Have", path: "/verbtohave", id: 3 },
+  { text: "Words Of The Week", path: "/wordsoftheweek", id: 4},
+];
+
+
 const Nav = () => {
   return (
     <>
       <nav className="h-12 bg-blue-500 mb-6 text-white font-bold shadow-amber-100 shadow-md flex justify-around items-center">
-        <Link to="/">Vocabulary</Link>
-        <Link to="/verbtobe">Verb To Be</Link>
-        <Link to="/verbtohave">Verb To Have</Link>
-        <Link to="/wordsoftheweek">Words Of The Week</Link>
+        {links.map((link) => (<Link key={link.id} to={`${link.path}`}>{link.text}</Link>))}
       </nav>
     </>
   );
 };
 
 export default Nav;
+
+
