@@ -100,7 +100,7 @@ const CardApp = () => {
     <>
       <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {currentCards.map((card, index) => (
-          <Flashcard key={index} cardData={card} />
+          <Flashcard key={index} cardData={card}/>
         ))}
       </div>
       <div className="flex justify-center p-4">
