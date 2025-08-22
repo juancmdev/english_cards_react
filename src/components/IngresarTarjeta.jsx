@@ -25,6 +25,10 @@ const IngresarTarjeta = () => {
       .then((data) => {
         console.log(data);
       });
+      // Limpiamos los campos del formulario
+      setSpanish("");
+      setEnglish("");
+      setCategory("");
   }
 
   return (

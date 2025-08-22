@@ -1,5 +1,7 @@
+import CardApp from "../components/CardApp";
+
 const Vocabulary = () => {
-  return <div>Vocabulary</div>;
+  return <div><CardApp/></div>;
 };
 
 export default Vocabulary;
