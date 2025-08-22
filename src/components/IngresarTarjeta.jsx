@@ -6,9 +6,25 @@ const IngresarTarjeta = () => {
   const [category, setCategory] = useState("");
 
   function handleSubmit(e){
+    const newCardData = {
+      spanish: spanish,
+      english: english,
+      category: category,
+    };
+
     e.preventDefault();
-    console.log(spanish, english, category);
     
+    fetch("http://localhost:5000/cards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCardData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
 
   return (
