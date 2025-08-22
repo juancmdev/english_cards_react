@@ -2,77 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 
-// const cardData = [
-//   {
-//     english: "Hello",
-//     spanish: "Hola",
-//   },
-//   {
-//     english: "Dog",
-//     spanish: "Perro",
-//   },
-//   {
-//     english: "Cat",
-//     spanish: "Gato",
-//   },
-//   {
-//     english: "Tree",
-//     spanish: "Árbol",
-//   },
-//   {
-//     english: "House",
-//     spanish: "Casa",
-//   },
-//   {
-//     english: "Car",
-//     spanish: "Coche",
-//   },
-//   {
-//     english: "Book",
-//     spanish: "Libro",
-//   },
-//   {
-//     english: "Phone",
-//     spanish: "Teléfono",
-//   },
-//   {
-//     english: "Sun",
-//     spanish: "Sol",
-//   },
-//   {
-//     english: "Moon",
-//     spanish: "Luna",
-//   },
-//   {
-//     english: "Star",
-//     spanish: "Estrella",
-//   },
-//   {
-//     english: "Tree",
-//     spanish: "Árbol",
-//   },
-//   {
-//     english: "House",
-//     spanish: "Casa",
-//   },
-//   {
-//     english: "Car",
-//     spanish: "Coche",
-//   },
-//   {
-//     english: "Book",
-//     spanish: "Libro",
-//   },
-//   {
-//     english: "Phone",
-//     spanish: "Teléfono",
-//   },
-//   {
-//     english: "Sun",
-//     spanish: "Sol",
-//   },
-// ];
-
 const app = express();
 const PORT = 5000;
 
@@ -145,6 +74,28 @@ app.get("/cards", async (req, res) => {
       .status(500)
       .send({ message: "Error al obtener los datos de las tarjetas." });
   }
+});
+
+// Ruta para agregar una nueva tarjeta
+app.post('/cards', async (req, res) => {
+    try {
+        const newCard = req.body; // El cuerpo de la petición contiene los datos de la nueva tarjeta
+        if (!newCard || Object.keys(newCard).length === 0) {
+            return res.status(400).json({ message: "El cuerpo de la petición no puede estar vacío." });
+        }
+        
+        const collection = db.collection('cards');
+        const result = await collection.insertOne(newCard);
+        
+        console.log(`Nueva tarjeta insertada con el ID: ${result.insertedId}`);
+        res.status(201).json({ 
+            message: "Tarjeta agregada exitosamente", 
+            cardId: result.insertedId 
+        });
+    } catch (error) {
+        console.error('Error al agregar la tarjeta:', error);
+        res.status(500).json({ message: "Error al agregar la tarjeta." });
+    }
 });
 
 // Ruta de prueba
