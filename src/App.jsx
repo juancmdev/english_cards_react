@@ -5,6 +5,7 @@ import Categorias from "./pages/Categorias";
 import VerbToBe from "./pages/VerbToBe";
 import VerbToHave from "./pages/VerbToHave";
 import WordsOfTheWeek from "./pages/WordsOfTheWeek";
+import IngresarTarjeta from "./components/IngresarTarjeta";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/verbtohave" element={<VerbToHave />} />
           <Route path="/wordsoftheweek" element={<WordsOfTheWeek />} />
           <Route path="/categorias" element={<Categorias />} />
+          <Route path="/ingresartarjeta" element={<IngresarTarjeta/>} />
         </Routes>
       </Layout>
     </>
