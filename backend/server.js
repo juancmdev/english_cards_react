@@ -1,13 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
+require('dotenv').config();
 
 const app = express();
 const PORT = 5000;
-
-// Reemplaza esta línea con la URL de tu base de datos de MongoDB Atlas
-const mongoURI =
-  "mongodb+srv://juancmdev:6623115a@english-cards-cluster.2gt2dro.mongodb.net/?retryWrites=true&w=majority&appName=english-cards-cluster";
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +13,7 @@ app.use(express.json());
 let db;
 async function connectToDatabase() {
   try {
-    const client = new MongoClient(mongoURI);
+    const client = new MongoClient(process.env.DB_URI);
     await client.connect();
     console.log("Conectado a la base de datos de MongoDB Atlas!");
     db = client.db("english_cards");
