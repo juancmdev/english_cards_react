@@ -1,78 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Flashcard from "./Flashcard";
 
 const CardApp = () => {
-  const cardData = [
-    {
-      english: "Hello",
-      spanish: "Hola",
-    },
-    {
-      english: "Dog",
-      spanish: "Perro",
-    },
-    {
-      english: "Cat",
-      spanish: "Gato",
-    },
-    {
-      english: "Tree",
-      spanish: "Árbol",
-    },
-    {
-      english: "House",
-      spanish: "Casa",
-    },
-    {
-      english: "Car",
-      spanish: "Coche",
-    },
-    {
-      english: "Book",
-      spanish: "Libro",
-    },
-    {
-      english: "Phone",
-      spanish: "Teléfono",
-    },
-    {
-      english: "Sun",
-      spanish: "Sol",
-    },
-    {
-      english: "Moon",
-      spanish: "Luna",
-    },
-    {
-      english: "Star",
-      spanish: "Estrella",
-    },
-    {
-      english: "Tree",
-      spanish: "Árbol",
-    },
-    {
-      english: "House",
-      spanish: "Casa",
-    },
-    {
-      english: "Car",
-      spanish: "Coche",
-    },
-    {
-      english: "Book",
-      spanish: "Libro",
-    },
-    {
-      english: "Phone",
-      spanish: "Teléfono",
-    },
-    {
-      english: "Sun",
-      spanish: "Sol",
-    },
-  ];
+  const [shuffledCards, setShufledCards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const cadsPerPage = 8;
 
+  // Función para mezclar las tarjetas (ahora usa el estado `shuffledCards`)
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -81,16 +15,25 @@ const CardApp = () => {
     return array;
   };
 
-  const [shuffledCards, setShufledCards] = useState(() =>
-    shuffleArray(cardData)
-  );
-
   const handleShuffle = () => {
-    setShufledCards(shuffleArray(cardData));
+    setShufledCards(shuffleArray([...shuffledCards])); // Creamos una copia para evitar mutar el estado directamente
   };
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const cadsPerPage = 8;
+  useEffect(() => {
+    fetch("http://localhost:5000/cards")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La respuesta de la red no fue correcta.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setShufledCards(data);
+      })
+      .catch((error) => {
+        console.error("Hubo un problema con la petición:", error);
+      });
+  }, []);
 
   const startIndex = currentPage * cadsPerPage;
   const endIndex = startIndex + cadsPerPage;
@@ -100,7 +43,7 @@ const CardApp = () => {
     <>
       <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {currentCards.map((card, index) => (
-          <Flashcard key={index} cardData={card}/>
+          <Flashcard key={index} cardData={card} />
         ))}
       </div>
       <div className="flex justify-center p-4">
