@@ -43,7 +43,15 @@ const cardData = [{ spanish: "Madre", english: "Mother", category: "" },
   { spanish: "Eso es\no\nEso está", english: "It is", category: "tobe" },
   { spanish: "Nosotros somos\no\nNosotros estamos", english: "We are", category: "tobe" },
   { spanish: "Ustedes son\no\nUstedes están", english: "You are", category: "tobe" },
-  { spanish: "Ellos son\no\nEllos están", english: "They are", category: "tobe" }
+  { spanish: "Ellos son\no\nEllos están", english: "They are", category: "tobe" },
+  { spanish: "Yo tengo", english: "I have", category: "tohave" },
+  { spanish: "Tú tienes", english: "You have", category: "tohave" },
+  { spanish: "Él tiene", english: "He has", category: "tohave" },
+  { spanish: "Ella tiene", english: "She has", category: "tohave" },
+  { spanish: "Ello tiene", english: "It has", category: "tohave" },
+  { spanish: "Nosotros tenemos", english: "We have", category: "tohave" },
+  { spanish: "Ustedes tienen", english: "You have", category: "tohave" },
+  { spanish: "Ellos tienen", english: "They have", category: "tohave" }
 ];
 
 app.use(cors());
