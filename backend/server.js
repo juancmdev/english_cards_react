@@ -6,6 +6,46 @@ require("dotenv").config();
 const app = express();
 const PORT = 5000;
 
+const cardData = [{ spanish: "Madre", english: "Mother", category: "" },
+  { spanish: "Padre", english: "Father", category: "" },
+  { spanish: "Hermano", english: "Brother", category: "" },
+  { spanish: "Hermana", english: "Sister", category: "" },
+  { spanish: "Abuelo", english: "Grandfather", category: "" },
+  { spanish: "Abuela", english: "Grandmother", category: "" },
+  { spanish: "Tío", english: "Uncle", category: "" },
+  { spanish: "Tía", english: "Aunt", category: "" },
+  { spanish: "Primo", english: "Cousin", category: "" },
+  { spanish: "Bebé", english: "Baby", category: "" },
+  { spanish: "Niño", english: "Boy", category: "" },
+  { spanish: "Niña", english: "Girl", category: "" },
+  { spanish: "Amigo", english: "Friend", category: "" },
+  { spanish: "Familia", english: "Family", category: "" },
+  { spanish: "Profesor", english: "Teacher", category: "" },
+  { spanish: "Estudiante", english: "Student", category: "" },
+  { spanish: "Escuela", english: "School", category: "" },
+  { spanish: "Clase", english: "Class", category: "" },
+  { spanish: "Libro", english: "Book", category: "" },
+  { spanish: "Lápiz", english: "Pencil", category: "" },
+  { spanish: "Pluma", english: "Pen", category: "" },
+  { spanish: "Cuaderno", english: "Notebook", category: "" },
+  { spanish: "Computadora", english: "Computer", category: "" },
+  { spanish: "Teléfono", english: "Phone", category: "" },
+  { spanish: "Juguete", english: "Toy", category: "" },
+  { spanish: "Pelota", english: "Ball", category: "" },
+  { spanish: "Bicicleta", english: "Bicycle", category: "" },
+  { spanish: "Coche", english: "Car", category: "" },
+  { spanish: "Avión", english: "Airplane", category: "" },
+  { spanish: "Tren", english: "Train", category: "" },
+  { spanish: "yo soy / yo estoy", english: "I am", category: "tobe" },
+  { spanish: "tú eres / tú estás", english: "You are", category: "tobe" },
+  { spanish: "él es / él está", english: "He is", category: "tobe" },
+  { spanish: "ella es / ella está", english: "She is", category: "tobe" },
+  { spanish: "ello es / ello está", english: "It is", category: "tobe" },
+  { spanish: "nosotros somos / nosotros estamos", english: "We are", category: "tobe" },
+  { spanish: "ustedes son / ustedes están", english: "You are", category: "tobe" },
+  { spanish: "ellos son / ellos están", english: "They are", category: "tobe" }
+];
+
 app.use(cors());
 app.use(express.json());
 
@@ -44,7 +84,7 @@ async function connectToDatabase() {
 //   }
 // });
 
-// Ruta para eliminar todos los datos de las tarjetas
+// // Ruta para eliminar todos los datos de las tarjetas
 // app.get("/delete-all-cards", async (req, res) => {
 //   try {
 //     const collection = db.collection("cards");
@@ -63,7 +103,13 @@ async function connectToDatabase() {
 app.get("/cards", async (req, res) => {
   try {
     const collection = db.collection("cards");
-    const cards = await collection.find().toArray();
+    const { category } = req.query; // Aquí se lee el parámetro de la URL
+    
+    // Si se proporciona una categoría, se crea un filtro.
+    // Si no, el filtro es un objeto vacío que encuentra todas las tarjetas.
+    const filter = category ? { category: category } : {};
+    
+    const cards = await collection.find(filter).toArray();
     res.status(200).json(cards);
   } catch (error) {
     console.error("Error al obtener los datos de las tarjetas:", error);
