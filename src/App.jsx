@@ -6,6 +6,7 @@ import VerbToHave from "./pages/VerbToHave";
 import WordsOfTheWeek from "./pages/WordsOfTheWeek";
 import IngresarTarjeta from "./components/IngresarTarjeta";
 import Vocabulary from "./pages/Vocabulary";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <>
       <Layout>
         <Routes>
+        <Route path="/" element={<Home/>} />
           <Route path="/vocabulary" element={<Vocabulary />} />
           <Route path="/verbtobe" element={<VerbToBe />} />
           <Route path="/verbtohave" element={<VerbToHave />} />
