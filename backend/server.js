@@ -36,14 +36,14 @@ const cardData = [{ spanish: "Madre", english: "Mother", category: "" },
   { spanish: "Coche", english: "Car", category: "" },
   { spanish: "Avión", english: "Airplane", category: "" },
   { spanish: "Tren", english: "Train", category: "" },
-  { spanish: "yo soy / yo estoy", english: "I am", category: "tobe" },
-  { spanish: "tú eres / tú estás", english: "You are", category: "tobe" },
-  { spanish: "él es / él está", english: "He is", category: "tobe" },
-  { spanish: "ella es / ella está", english: "She is", category: "tobe" },
-  { spanish: "ello es / ello está", english: "It is", category: "tobe" },
-  { spanish: "nosotros somos / nosotros estamos", english: "We are", category: "tobe" },
-  { spanish: "ustedes son / ustedes están", english: "You are", category: "tobe" },
-  { spanish: "ellos son / ellos están", english: "They are", category: "tobe" }
+  { spanish: "Yo soy\no\nYo estoy", english: "I am", category: "tobe"},
+  { spanish: "Tú eres\no\nTú estás", english: "You are", category: "tobe" },
+  { spanish: "Él es\no\nÉl está", english: "He is", category: "tobe" },
+  { spanish: "Ella es\no\nElla está", english: "She is", category: "tobe" },
+  { spanish: "Eso es\no\nEso está", english: "It is", category: "tobe" },
+  { spanish: "Nosotros somos\no\nNosotros estamos", english: "We are", category: "tobe" },
+  { spanish: "Ustedes son\no\nUstedes están", english: "You are", category: "tobe" },
+  { spanish: "Ellos son\no\nEllos están", english: "They are", category: "tobe" }
 ];
 
 app.use(cors());

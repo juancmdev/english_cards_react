@@ -42,7 +42,7 @@ const VerbToBe = () => {
 
   return (
     <>
-      <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="mx-auto grid text-center sm:grid-cols-2 whitespace-pre-line md:grid-cols-3 lg:grid-cols-4 gap-4">
         {currentCards.map((card, index) => (
           <Flashcard key={index} cardData={card} />
         ))}
