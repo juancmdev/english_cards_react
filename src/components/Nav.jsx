@@ -11,7 +11,7 @@ const links = [
 const Nav = () => {
   return (
     <>
-      <nav className="h-12 bg-blue-500 mb-6 text-white font-bold shadow-amber-100 shadow-md flex justify-around items-center">
+      <nav className="h-12 bg-blue-500 text-white font-bold shadow-amber-100 shadow-md flex justify-around items-center">
         {links.map((link) => (<Link key={link.id} to={`${link.path}`}>{link.text}</Link>))}
       </nav>
     </>
