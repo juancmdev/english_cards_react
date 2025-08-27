@@ -38,7 +38,7 @@ const Flashcard = ({ cardData }) => {
                 </div>
                 <div>
                   {urlImage && (
-                    <img src={urlImage} alt={spanish} className="mt-4 max-h-56 max-w-full" />
+                    <img src={urlImage} alt={spanish} className="mt-4 max-h-56 max-w-full rounded-4xl" />
                   )}
                 </div>
                 
