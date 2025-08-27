@@ -76,24 +76,24 @@ async function connectToDatabase() {
 }
 
 // Ruta para insertar los datos (se usa una sola vez)
-app.get("/insert-data", async (req, res) => {
-  try {
-    const collection = db.collection("cards");
-    const count = await collection.countDocuments();
+// app.get("/insert-data", async (req, res) => {
+//   try {
+//     const collection = db.collection("cards");
+//     const count = await collection.countDocuments();
 
-    if (count === 0) {
-      const result = await collection.insertMany(cardData);
-      console.log(`${result.insertedCount} documentos insertados.`);
-      res.status(200).send({ message: "Datos insertados correctamente." });
-    } else {
-      console.log("Los datos ya existen. No se ha insertado nada.");
-      res.status(200).send({ message: "Los datos ya existen." });
-    }
-  } catch (error) {
-    console.error("Error al insertar los datos:", error);
-    res.status(500).send({ message: "Error al insertar los datos." });
-  }
-});
+//     if (count === 0) {
+//       const result = await collection.insertMany(cardData);
+//       console.log(`${result.insertedCount} documentos insertados.`);
+//       res.status(200).send({ message: "Datos insertados correctamente." });
+//     } else {
+//       console.log("Los datos ya existen. No se ha insertado nada.");
+//       res.status(200).send({ message: "Los datos ya existen." });
+//     }
+//   } catch (error) {
+//     console.error("Error al insertar los datos:", error);
+//     res.status(500).send({ message: "Error al insertar los datos." });
+//   }
+// });
 
 // // Ruta para eliminar todos los datos de las tarjetas
 // app.get("/delete-all-cards", async (req, res) => {
