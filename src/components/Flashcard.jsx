@@ -33,7 +33,7 @@ const Flashcard = ({ cardData }) => {
 
             <div className={`front p-6 absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
               <div className="flex flex-col items-center">
-                <div className="text-2xl">
+                <div className={urlImage ? 'text-3xl' : 'text-4xl'}>
                   {spanish}
                 </div>
                 <div>

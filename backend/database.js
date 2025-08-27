@@ -1,5 +1,5 @@
-export const dataBase = [
-    [{ spanish: "Madre", english: "Mother", category: "", urlImage: "" },
+const dataBase = [
+        { spanish: "Madre", english: "Mother", category: "", urlImage: "" },
         { spanish: "Padre", english: "Father", category: "", urlImage: "" },
         { spanish: "Hermano", english: "Brother", category: "", urlImage: "" },
         { spanish: "Hermana", english: "Sister", category: "", urlImage: "" },
@@ -45,5 +45,7 @@ export const dataBase = [
         { spanish: "Nosotros tenemos", english: "We have", category: "tohave", urlImage: "" },
         { spanish: "Ustedes tienen", english: "You have", category: "tohave", urlImage: "" },
         { spanish: "Ellos tienen", english: "They have", category: "tohave", urlImage: "" }
-      ]
+      
 ]
+
+export default dataBase;
