@@ -4,16 +4,18 @@ const IngresarTarjeta = () => {
   const [spanish, setSpanish] = useState("");
   const [english, setEnglish] = useState("");
   const [category, setCategory] = useState("");
+  const [urlImage, setUrlImage] = useState("");
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     const newCardData = {
       spanish: spanish,
       english: english,
       category: category,
+      urlImage: urlImage,
     };
 
     e.preventDefault();
-    
+
     fetch("http://localhost:5000/cards", {
       method: "POST",
       headers: {
@@ -25,10 +27,11 @@ const IngresarTarjeta = () => {
       .then((data) => {
         console.log(data);
       });
-      // Limpiamos los campos del formulario
-      setSpanish("");
-      setEnglish("");
-      setCategory("");
+    // Limpiamos los campos del formulario
+    setSpanish("");
+    setEnglish("");
+    setCategory("");
+    setUrlImage("");
   }
 
   return (
@@ -67,12 +70,14 @@ const IngresarTarjeta = () => {
             className="border border-black rounded p-1"
           />
           <input
-  type="text"
-  name="image"
-  placeholder="URL de la imagen"
-  id=""
-  className="border border-black rounded p-1"
-/>
+            type="text"
+            name="image"
+            placeholder="URL de la imagen"
+            id=""
+            className="border border-black rounded p-1"
+            value={urlImage}
+            onChange={(e) => setUrlImage(e.target.value)}
+          />
           <input
             type="submit"
             value="Insertar"

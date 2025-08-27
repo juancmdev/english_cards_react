@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const Flashcard = ({ cardData }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const { english, spanish } = cardData;
+  const { english, spanish, urlImage } = cardData;
 
   // Lógica de useEffect para el temporizador
   useEffect(() => {
@@ -27,9 +27,21 @@ const Flashcard = ({ cardData }) => {
          <>
             <div className={`text-4xl mt-6 mb-6 font-bold h-80 w-80 cursor-pointer bg-white rounded-xl shadow-lg relative [perspective:1000px] [transform-style:preserve-3d] transition-transform duration-500 ease-in-out mx-auto ${isFlipped ? "rotate-y-180" : ""}`}
                 onClick={handleFlip}>
-                <div className={`front p-6 absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
-                    {spanish}
+                {/* <div className={`front p-6 absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
+                  <div className="flex flex-col items-center">
+                    {spanish === "" ? <img src={urlImage} alt={spanish} className="mt-4 max-h-full max-w-full"></img> : spanish}
                 </div>
+                  </div> */}
+
+<div className={`front p-6 absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
+  <div className="flex flex-col items-center">
+    {spanish}
+    {urlImage && (
+      <img src={urlImage} alt={spanish} className="mt-4 max-h-52 max-w-full rounded-full" />
+    )}
+  </div>
+</div>
+                  
                 <div className={`back [backface-visibility:hidden] absolute top-0 left-0  flex justify-center items-center h-full w-full transform -rotate-y-180`}>
                     {english}
                 </div>
