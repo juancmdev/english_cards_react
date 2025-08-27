@@ -9,53 +9,53 @@ require("dotenv").config();
 const app = express();
 const PORT = 5000;
 
-const cardData = [{ spanish: "Madre", english: "Mother", category: "", urlImage: "" },
-  { spanish: "Padre", english: "Father", category: "", urlImage: "" },
-  { spanish: "Hermano", english: "Brother", category: "", urlImage: "" },
-  { spanish: "Hermana", english: "Sister", category: "", urlImage: "" },
-  { spanish: "Abuelo", english: "Grandfather", category: "", urlImage: "" },
-  { spanish: "Abuela", english: "Grandmother", category: "", urlImage: "" },
-  { spanish: "Tío", english: "Uncle", category: "", urlImage: "" },
-  { spanish: "Tía", english: "Aunt", category: "", urlImage: "" },
-  { spanish: "Primo", english: "Cousin", category: "", urlImage: "" },
-  { spanish: "Bebé", english: "Baby", category: "", urlImage: "" },
-  { spanish: "Niño", english: "Boy", category: "", urlImage: "" },
-  { spanish: "Niña", english: "Girl", category: "", urlImage: "" },
-  { spanish: "Amigo", english: "Friend", category: "", urlImage: "" },
-  { spanish: "Familia", english: "Family", category: "", urlImage: "" },
-  { spanish: "Profesor", english: "Teacher", category: "", urlImage: "" },
-  { spanish: "Estudiante", english: "Student", category: "", urlImage: "" },
-  { spanish: "Escuela", english: "School", category: "", urlImage: "" },
-  { spanish: "Clase", english: "Class", category: "", urlImage: "" },
-  { spanish: "Libro", english: "Book", category: "", urlImage: "" },
-  { spanish: "Lápiz", english: "Pencil", category: "", urlImage: "" },
-  { spanish: "Pluma", english: "Pen", category: "", urlImage: "" },
-  { spanish: "Cuaderno", english: "Notebook", category: "", urlImage: "" },
-  { spanish: "Computadora", english: "Computer", category: "", urlImage: "" },
-  { spanish: "Teléfono", english: "Phone", category: "", urlImage: "" },
-  { spanish: "Juguete", english: "Toy", category: "", urlImage: "" },
-  { spanish: "Pelota", english: "Ball", category: "", urlImage: "" },
-  { spanish: "Bicicleta", english: "Bicycle", category: "", urlImage: "" },
-  { spanish: "Coche", english: "Car", category: "", urlImage: "" },
-  { spanish: "Avión", english: "Airplane", category: "", urlImage: "" },
-  { spanish: "Tren", english: "Train", category: "", urlImage: "" },
-  { spanish: "Yo soy\no\nYo estoy", english: "I am", category: "tobe", urlImage: ""},
-  { spanish: "Tú eres\no\nTú estás", english: "You are", category: "tobe", urlImage: "" },
-  { spanish: "Él es\no\nÉl está", english: "He is", category: "tobe", urlImage: "" },
-  { spanish: "Ella es\no\nElla está", english: "She is", category: "tobe", urlImage: "" },
-  { spanish: "Eso es\no\nEso está", english: "It is", category: "tobe", urlImage: "" },
-  { spanish: "Nosotros somos\no\nNosotros estamos", english: "We are", category: "tobe", urlImage: "" },
-  { spanish: "Ustedes son\no\nUstedes están", english: "You are", category: "tobe", urlImage: "" },
-  { spanish: "Ellos son\no\nEllos están", english: "They are", category: "tobe", urlImage: "" },
-  { spanish: "Yo tengo", english: "I have", category: "tohave", urlImage: "" },
-  { spanish: "Tú tienes", english: "You have", category: "tohave", urlImage: "" },
-  { spanish: "Él tiene", english: "He has", category: "tohave", urlImage: "" },
-  { spanish: "Ella tiene", english: "She has", category: "tohave", urlImage: "" },
-  { spanish: "Ello tiene", english: "It has", category: "tohave", urlImage: "" },
-  { spanish: "Nosotros tenemos", english: "We have", category: "tohave", urlImage: "" },
-  { spanish: "Ustedes tienen", english: "You have", category: "tohave", urlImage: "" },
-  { spanish: "Ellos tienen", english: "They have", category: "tohave", urlImage: "" }
-];
+// const cardData = [{ spanish: "Madre", english: "Mother", category: "", urlImage: "" },
+//   { spanish: "Padre", english: "Father", category: "", urlImage: "" },
+//   { spanish: "Hermano", english: "Brother", category: "", urlImage: "" },
+//   { spanish: "Hermana", english: "Sister", category: "", urlImage: "" },
+//   { spanish: "Abuelo", english: "Grandfather", category: "", urlImage: "" },
+//   { spanish: "Abuela", english: "Grandmother", category: "", urlImage: "" },
+//   { spanish: "Tío", english: "Uncle", category: "", urlImage: "" },
+//   { spanish: "Tía", english: "Aunt", category: "", urlImage: "" },
+//   { spanish: "Primo", english: "Cousin", category: "", urlImage: "" },
+//   { spanish: "Bebé", english: "Baby", category: "", urlImage: "" },
+//   { spanish: "Niño", english: "Boy", category: "", urlImage: "" },
+//   { spanish: "Niña", english: "Girl", category: "", urlImage: "" },
+//   { spanish: "Amigo", english: "Friend", category: "", urlImage: "" },
+//   { spanish: "Familia", english: "Family", category: "", urlImage: "" },
+//   { spanish: "Profesor", english: "Teacher", category: "", urlImage: "" },
+//   { spanish: "Estudiante", english: "Student", category: "", urlImage: "" },
+//   { spanish: "Escuela", english: "School", category: "", urlImage: "" },
+//   { spanish: "Clase", english: "Class", category: "", urlImage: "" },
+//   { spanish: "Libro", english: "Book", category: "", urlImage: "" },
+//   { spanish: "Lápiz", english: "Pencil", category: "", urlImage: "" },
+//   { spanish: "Pluma", english: "Pen", category: "", urlImage: "" },
+//   { spanish: "Cuaderno", english: "Notebook", category: "", urlImage: "" },
+//   { spanish: "Computadora", english: "Computer", category: "", urlImage: "" },
+//   { spanish: "Teléfono", english: "Phone", category: "", urlImage: "" },
+//   { spanish: "Juguete", english: "Toy", category: "", urlImage: "" },
+//   { spanish: "Pelota", english: "Ball", category: "", urlImage: "" },
+//   { spanish: "Bicicleta", english: "Bicycle", category: "", urlImage: "" },
+//   { spanish: "Coche", english: "Car", category: "", urlImage: "" },
+//   { spanish: "Avión", english: "Airplane", category: "", urlImage: "" },
+//   { spanish: "Tren", english: "Train", category: "", urlImage: "" },
+//   { spanish: "Yo soy\no\nYo estoy", english: "I am", category: "tobe", urlImage: ""},
+//   { spanish: "Tú eres\no\nTú estás", english: "You are", category: "tobe", urlImage: "" },
+//   { spanish: "Él es\no\nÉl está", english: "He is", category: "tobe", urlImage: "" },
+//   { spanish: "Ella es\no\nElla está", english: "She is", category: "tobe", urlImage: "" },
+//   { spanish: "Eso es\no\nEso está", english: "It is", category: "tobe", urlImage: "" },
+//   { spanish: "Nosotros somos\no\nNosotros estamos", english: "We are", category: "tobe", urlImage: "" },
+//   { spanish: "Ustedes son\no\nUstedes están", english: "You are", category: "tobe", urlImage: "" },
+//   { spanish: "Ellos son\no\nEllos están", english: "They are", category: "tobe", urlImage: "" },
+//   { spanish: "Yo tengo", english: "I have", category: "tohave", urlImage: "" },
+//   { spanish: "Tú tienes", english: "You have", category: "tohave", urlImage: "" },
+//   { spanish: "Él tiene", english: "He has", category: "tohave", urlImage: "" },
+//   { spanish: "Ella tiene", english: "She has", category: "tohave", urlImage: "" },
+//   { spanish: "Ello tiene", english: "It has", category: "tohave", urlImage: "" },
+//   { spanish: "Nosotros tenemos", english: "We have", category: "tohave", urlImage: "" },
+//   { spanish: "Ustedes tienen", english: "You have", category: "tohave", urlImage: "" },
+//   { spanish: "Ellos tienen", english: "They have", category: "tohave", urlImage: "" }
+// ];
 
 app.use(cors());
 app.use(express.json());
@@ -153,6 +153,21 @@ app.post("/cards", async (req, res) => {
     res.status(500).json({ message: "Error al agregar la tarjeta." });
   }
 });
+
+//Ruta para loguearme y poder modificar tarjetas
+// app.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
+
+//   username = process.env.USUARIO_SECRETO;
+//   password = process.env.PASSWORD_SECRETA;
+
+//   if( user === username && pass === password){
+
+//   }
+// });
+
+
+
 
 // Ruta de prueba
 app.get("/", (req, res) => {
