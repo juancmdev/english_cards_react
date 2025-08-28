@@ -8,6 +8,7 @@ import IngresarTarjeta from "./components/IngresarTarjeta";
 import Vocabulary from "./pages/Vocabulary";
 import Home from "./pages/Home";
 import Login from "./components/Login";
+import Admin from "./pages/Admin";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/categorias" element={<Categorias />} />
           <Route path="/ingresartarjeta" element={<IngresarTarjeta/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </Layout>
     </>
