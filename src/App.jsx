@@ -10,27 +10,28 @@ import Home from "./pages/Home";
 import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { CookiesProvider } from "react-cookie";
 
 function App() {
   return (
     <>
-      <Layout>
-        <Routes>
-        <Route path="/" element={<Home/>} />
-          <Route path="/vocabulary" element={<Vocabulary />} />
-          <Route path="/verbtobe" element={<VerbToBe />} />
-          <Route path="/verbtohave" element={<VerbToHave />} />
-          <Route path="/wordsoftheweek" element={<WordsOfTheWeek />} />
-          <Route path="/categorias" element={<Categorias />} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/" element={<PrivateRoute />}>
-          
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/ingresartarjeta" element={<IngresarTarjeta/>} />
-          </Route>
-        </Routes>
-      </Layout>
+      <CookiesProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vocabulary" element={<Vocabulary />} />
+            <Route path="/verbtobe" element={<VerbToBe />} />
+            <Route path="/verbtohave" element={<VerbToHave />} />
+            <Route path="/wordsoftheweek" element={<WordsOfTheWeek />} />
+            <Route path="/categorias" element={<Categorias />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/ingresartarjeta" element={<IngresarTarjeta />} />
+            </Route>
+          </Routes>
+        </Layout>
+      </CookiesProvider>
     </>
   );
 }
