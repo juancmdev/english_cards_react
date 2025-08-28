@@ -7,6 +7,7 @@ import WordsOfTheWeek from "./pages/WordsOfTheWeek";
 import IngresarTarjeta from "./components/IngresarTarjeta";
 import Vocabulary from "./pages/Vocabulary";
 import Home from "./pages/Home";
+import Login from "./components/Login";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/wordsoftheweek" element={<WordsOfTheWeek />} />
           <Route path="/categorias" element={<Categorias />} />
           <Route path="/ingresartarjeta" element={<IngresarTarjeta/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
       </Layout>
     </>

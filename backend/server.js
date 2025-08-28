@@ -159,11 +159,19 @@ app.post("/cards", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  username = process.env.USUARIO_SECRETO;
-  password = process.env.PASSWORD_SECRETA;
+  // Usa las variables de entorno de forma segura
+  const correctUsername = process.env.USUARIO_SECRETO;
+  const correctPassword = process.env.PASSWORD_SECRETA;
 
-  if( user === username && pass === password){
+  if( username === correctUsername && password === correctPassword){
+    // Si las credenciales son válidas, crea un token
+    const token = jwt.sign({ username: username }, process.env.TOKEN_SECRETO, { expiresIn: '1h' });
 
+    // Envía el token al frontend
+    res.json({ token });
+  } else {
+    // Si no son válidas, envía un error
+    res.status(401).json({ message: "Usuario o contraseña incorrectos" });
   }
 });
 
