@@ -157,6 +157,8 @@ app.post("/cards", async (req, res) => {
 
 //Ruta para loguearme y poder modificar tarjetas
 app.post("/login", async (req, res) => {
+  console.log(req.body);
+  
   const { username, password } = req.body;
 
   // Usa las variables de entorno de forma segura
@@ -164,14 +166,22 @@ app.post("/login", async (req, res) => {
   const correctPassword = process.env.PASSWORD_SECRETA;
   const tokenSecret = process.env.TOKEN_SECRETO;
 
-  if( username === correctUsername && password === correctPassword){
+  console.log(`Recibido del formulario: Usuario - "${username}", Contraseña - "${password}"`);
+  console.log(`Leído del .env: Usuario - "${process.env.USUARIO_SECRETO}", Contraseña - "${process.env.PASSWORD_SECRETA}"`);
+
+  if( username == correctUsername && password == correctPassword){
     // Si las credenciales son válidas, crea un token
     const token = jwt.sign({ username: username }, tokenSecret, {
       expiresIn: "1h",
     });
 
     // Guardar el token en una cookie
-    res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      path: "/"
+    });
 
     // Enviar una respuesta de éxito sin el token en el cuerpo
     res.status(200).json({ message: "Inicio de sesión exitoso" });

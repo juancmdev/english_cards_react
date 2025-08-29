@@ -20,22 +20,25 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
-    }).then((res) => {
-      if (res.ok) {
-        // La respuesta del servidor fue exitosa (código 200-299)
-        // Redirige al usuario a la página de administración
-        navigate("/admin");
-      } else {
-        // La respuesta del servidor indica un error (ej. 401)
-        console.error("Fallo en el inicio de sesión");
-        // Aquí podrías mostrar un mensaje de error al usuario
-      }
     })
-    .catch((error) => {
-      console.error("Error en la solicitud:", error);
-    });
-    setUsername("");
-    setPassword("");
+      .then((res) => {
+        if (res.ok) {
+          // console.log(
+          //   "¡Login exitoso! El servidor envió la respuesta correcta."
+          // );
+          navigate("/admin");
+          // La respuesta del servidor fue exitosa (código 200-299)
+          // Redirige al usuario a la página de administración
+          // navigate("/admin");
+        } else {
+          // La respuesta del servidor indica un error (ej. 401)
+          console.error("Fallo en el inicio de sesión");
+          // Aquí podrías mostrar un mensaje de error al usuario
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
   };
 
   return (

@@ -16,6 +16,7 @@ const Admin = () => {
   return (
     <>
       <h1 className="text-3xl font-bold ">Hello to Admin Page</h1>
+      <button className="">Logout</button>
     </>
   );
 };

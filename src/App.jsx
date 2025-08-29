@@ -10,12 +10,10 @@ import Home from "./pages/Home";
 import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import PrivateRoute from "./components/PrivateRoute";
-import { CookiesProvider } from "react-cookie";
 
 function App() {
   return (
     <>
-      <CookiesProvider>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -31,7 +29,6 @@ function App() {
             </Route>
           </Routes>
         </Layout>
-      </CookiesProvider>
     </>
   );
 }
