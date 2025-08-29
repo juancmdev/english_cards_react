@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 
@@ -58,8 +59,17 @@ const PORT = 5000;
 //   { spanish: "Ellos tienen", english: "They have", category: "tohave", urlImage: "" }
 // ];
 
-app.use(cors());
+// Configuración de CORS con credenciales
+app.use(
+  cors({
+    origin: "http://localhost:5173", // URL de tu frontend
+    credentials: true, // ¡CRUCIAL para las cookies!
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
+app.use(cookieParser()); // Middleware para leer cookies
 
 // Conexión a la base de datos y otras funciones del servidor
 let db;
@@ -179,9 +189,12 @@ app.post("/login", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "lax",
       path: "/"
     });
+   
+    console.log(res.cookie);
+    
 
     // Enviar una respuesta de éxito sin el token en el cuerpo
     res.status(200).json({ message: "Inicio de sesión exitoso" });
