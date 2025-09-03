@@ -189,7 +189,7 @@ app.post("/login", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "strict",
       path: "/"
     });
    
@@ -197,7 +197,7 @@ app.post("/login", async (req, res) => {
     
 
     // Enviar una respuesta de éxito sin el token en el cuerpo
-    res.status(200).json({ message: "Inicio de sesión exitoso" });
+    res.status(200).json({ message: "Inicio de sesión exitoso", token: token });
 
   } else {
     // Si no son válidas, envía un error

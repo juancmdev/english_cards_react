@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate(); // Aquí se declara el hook
+
+  //Agregamos este hook para manejar la redirección
+  useEffect(() => {
+    if (cookies.token) {
+      navigate("/admin");
+    }
+  }, [cookies, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,27 +29,25 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
+      credentials: "include",
     })
       .then((res) => {
         if (res.ok) {
-          // console.log(
-          //   "¡Login exitoso! El servidor envió la respuesta correcta."
-          // );
-          navigate("/admin");
-          // La respuesta del servidor fue exitosa (código 200-299)
-          // Redirige al usuario a la página de administración
-          // navigate("/admin");
+          return res.json(); // ⬅️ Paso 1: Procesar la respuesta como JSON
         } else {
-          // La respuesta del servidor indica un error (ej. 401)
-          console.error("Fallo en el inicio de sesión");
-          // Aquí podrías mostrar un mensaje de error al usuario
+          throw new Error("Fallo en el inicio de sesión"); // Lanza un error para el .catch
         }
       })
+      .then((data) => {
+        // ⬅️ Paso 2: Usar los datos de la respuesta para establecer la cookie
+        setCookie("token", data.token, { path: "/", secure: true, sameSite: "Lax" });
+        console.log("Token", data.token); // ⬅️ Opcional: Para verificar en la consola
+        navigate("/admin"); // ⬅️ Paso 3: Redirigir al usuario
+      })
       .catch((error) => {
-        console.error("Error en la solicitud:", error);
+        console.error("Error:", error);
       });
   };
-
   return (
     <>
       <form
