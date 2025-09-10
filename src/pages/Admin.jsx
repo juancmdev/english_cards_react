@@ -25,11 +25,14 @@ const Admin = () => {
       <div className="container" style={{ backgroundColor: "yellow", width: "1000px", height: "300px", margin: "auto", padding: "20px" }}>
         <div className="add-card flex">
           <h2 className="text-xl font-bold mr-3">Add new Card</h2>
+          <Link to={'/ingresartarjeta'} >
           <img
             src="src/assets/iconos/ingresar-datos.png"
             alt="icono-ingresar-datos"
             className="w-6 h-6"
           />
+          </Link>
+          
         </div>
         <div className="update-card flex">
           <h2 className="text-xl font-bold mr-3">Update Card</h2>
