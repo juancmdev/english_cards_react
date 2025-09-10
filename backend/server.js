@@ -125,11 +125,21 @@ async function connectToDatabase() {
 app.get("/cards", async (req, res) => {
   try {
     const collection = db.collection("cards");
-    const { category, limit } = req.query; // Aquí se lee el parámetro de la URL
+    const { category, limit, search } = req.query; // Aquí se lee el parámetro de la URL
     
-    // Si se proporciona una categoría, se crea un filtro.
-    // Si no, el filtro es un objeto vacío que encuentra todas las tarjetas.
-    const filter = category ? { category: category } : {};
+    // El filtro inicial es un objeto vacío
+    let filter = {};
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (search) {
+      filter.$or = [
+        { spanish: { $regex: search, $options: 'i' } },
+        { english: { $regex: search, $options: 'i' } }
+      ];
+    }
 
     let query = collection.find(filter);
 
