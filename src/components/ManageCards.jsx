@@ -6,7 +6,7 @@ const [cards, setCards] = useState([]);
     useEffect(() => {
         const fetchCards = async () => {
         try {
-                const response = await fetch("http://localhost:5000/cards");
+                const response = await fetch("http://localhost:5000/cards?limit=20");
                 if(!response.ok) {
                     throw new Error('No se pudo obtener la lista de tarjetas')
                 }

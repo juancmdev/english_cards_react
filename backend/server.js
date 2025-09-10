@@ -125,13 +125,20 @@ async function connectToDatabase() {
 app.get("/cards", async (req, res) => {
   try {
     const collection = db.collection("cards");
-    const { category } = req.query; // Aquí se lee el parámetro de la URL
+    const { category, limit } = req.query; // Aquí se lee el parámetro de la URL
     
     // Si se proporciona una categoría, se crea un filtro.
     // Si no, el filtro es un objeto vacío que encuentra todas las tarjetas.
     const filter = category ? { category: category } : {};
-    
-    const cards = await collection.find(filter).toArray();
+
+    let query = collection.find(filter);
+
+    // ⬅️ Condicional para aplicar el límite
+    if (limit) {
+      query = query.limit(parseInt(limit));
+    }
+
+    const cards = await query.toArray();
     res.status(200).json(cards);
   } catch (error) {
     console.error("Error al obtener los datos de las tarjetas:", error);
