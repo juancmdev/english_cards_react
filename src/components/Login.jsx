@@ -76,7 +76,7 @@ const Login = () => {
         <input
           type="submit"
           value="Login"
-          className="bg-blue-500 text-white rounded-lg p-2"
+          className="bg-blue-500 text-white rounded-lg p-2 cursor-pointer"
         />
       </form>
     </>
