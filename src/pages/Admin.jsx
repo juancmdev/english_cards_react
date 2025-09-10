@@ -34,7 +34,7 @@ const Admin = () => {
         <div className="update-card flex">
           <h2 className="text-xl font-bold mr-3">Update Card</h2>
           <img
-            src="src/assets/iconos/ingresar-datos.png"
+            src="src\assets\iconos\update.png"
             alt="icono-ingresar-datos"
             className="w-6 h-6"
           />
@@ -42,7 +42,7 @@ const Admin = () => {
         <div className="delete-card flex">
           <h2 className="text-xl font-bold mr-3">Delete Card</h2>
           <img
-            src="src/assets/iconos/ingresar-datos.png"
+            src="src\assets\iconos\delete-icon.png"
             alt="icono-ingresar-datos"
             className="w-6 h-6"
           />
