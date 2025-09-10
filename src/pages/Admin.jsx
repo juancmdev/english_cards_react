@@ -22,33 +22,45 @@ const Admin = () => {
       <h1 className="text-3xl font-bold mx-auto text-center mt-4">
         Hello to Admin Page
       </h1>
-      <div className="container" style={{ backgroundColor: "yellow", width: "1000px", height: "300px", margin: "auto", padding: "20px" }}>
+      <div
+        className="container"
+        style={{
+          backgroundColor: "yellow",
+          width: "1000px",
+          height: "300px",
+          margin: "auto",
+          padding: "20px",
+        }}
+      >
         <div className="add-card flex">
           <h2 className="text-xl font-bold mr-3">Add new Card</h2>
-          <Link to={'/ingresartarjeta'} >
-          <img
-            src="src/assets/iconos/ingresar-datos.png"
-            alt="icono-ingresar-datos"
-            className="w-6 h-6"
-          />
+          <Link to={"/ingresartarjeta"}>
+            <img
+              src="src/assets/iconos/ingresar-datos.png"
+              alt="icono-ingresar-datos"
+              className="w-6 h-6"
+            />
           </Link>
-          
         </div>
         <div className="update-card flex">
           <h2 className="text-xl font-bold mr-3">Update Card</h2>
-          <img
-            src="src\assets\iconos\update.png"
-            alt="icono-ingresar-datos"
-            className="w-6 h-6"
-          />
+          <Link to={"/managecards"}>
+            <img
+              src="src\assets\iconos\update.png"
+              alt="icono-ingresar-datos"
+              className="w-6 h-6"
+            />
+          </Link>
         </div>
         <div className="delete-card flex">
           <h2 className="text-xl font-bold mr-3">Delete Card</h2>
-          <img
-            src="src\assets\iconos\delete-icon.png"
-            alt="icono-ingresar-datos"
-            className="w-6 h-6"
-          />
+          <Link to={"/managecards"}>
+            <img
+              src="src\assets\iconos\delete-icon.png"
+              alt="icono-ingresar-datos"
+              className="w-6 h-6"
+            />
+          </Link>
         </div>
       </div>
 
