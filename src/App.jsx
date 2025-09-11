@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import PrivateRoute from "./components/PrivateRoute";
 import ManageCards from "./components/ManageCards";
+import EditCard from "./components/EditCard";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/admin" element={<Admin />} />
               <Route path="/ingresartarjeta" element={<IngresarTarjeta />} />
               <Route path="/managecards" element={<ManageCards/>} />
+              <Route path="editartarjeta" element={<EditCard/>}/>
             </Route>
           </Routes>
         </Layout>
