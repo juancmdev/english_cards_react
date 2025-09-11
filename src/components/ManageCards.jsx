@@ -7,7 +7,15 @@ const ManageCards = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch("http://localhost:5000/cards?limit=20");
+        let url = "http://localhost:5000/cards?limit=20";
+
+        // Si el usuario ha escrito algo, agregamos el parámetro de búsqueda a la URL
+        if (search) {
+          url += `&search=${search}`;
+        }
+
+
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error("No se pudo obtener la lista de tarjetas");
         }
@@ -18,7 +26,7 @@ const ManageCards = () => {
       }
     };
     fetchCards();
-  }, []);
+  }, [search]);
 
   return (
     <div>
