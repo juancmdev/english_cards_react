@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
@@ -120,6 +120,26 @@ async function connectToDatabase() {
 //     res.status(500).send({ message: "Error al eliminar los datos." });
 //   }
 // });
+
+//ruta para eliminar una card
+app.delete("/cards/:id", async (req, res) => {
+  try {
+    const cardId = req.params.id;
+    // ⬅️ Convertimos el ID de la URL a un ObjectId
+    const objectId = new ObjectId(cardId); 
+
+    const result = await db.collection("cards").deleteOne({ _id: objectId });
+
+    if (result.deletedCount === 1) {
+      res.status(200).json({ message: "Tarjeta eliminada con éxito" });
+    } else {
+      res.status(404).json({ message: "No se encontró la tarjeta para eliminar" });
+    }
+  } catch (error) {
+    console.error("Error al eliminar la tarjeta:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
 
 // **NUEVA RUTA para obtener los datos de las tarjetas**
 app.get("/cards", async (req, res) => {

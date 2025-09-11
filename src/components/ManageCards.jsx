@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const ManageCards = () => {
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState("");
-  const [message, setMessage] = useState
+  const [message, setMessage] = useState("");
 
 
 const handleDelete = async (cardId) => {
@@ -91,9 +91,10 @@ const handleDelete = async (cardId) => {
             />
             </button>
           </div>
-          <h2>{message}</h2>
+          
         </div>
       ))}
+    <h2 className="text-center text-3xl bg-amber-400 p-4 mt-4">{message}</h2>
     </div>
   );
 };
