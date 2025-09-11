@@ -1,15 +1,51 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const handleChange = (e) => {
-  setCard({ ...card, [e.target.name]: e.target.value });
-};
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-};
 
 const EditCard = () => {
+    const [message, setMessage] = useState('');
+
+    const handleChange = (e) => {
+        setCard({ ...card, [e.target.name]: e.target.value });
+      };
+      
+      const handleSubmit = async (e) => {
+         
+      
+        e.preventDefault();
+      
+        try {
+          const response = await fetch(`http://localhost:5000/cards/${card._id}`, {
+            method: 'PUT', // ⬅️ Método HTTP para actualizar
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(card), // ⬅️ Enviamos los datos del estado
+          });
+      
+          if (!response.ok) {
+              setMessage('Ocurrió un error. Revisa la consola.'); // ⬅️ Mensaje de error del lado del cliente
+              setTimeout(() => {
+                  setMessage('');
+              }, 3000);
+              
+              throw new Error("No se pudo actualizar la tarjeta");
+          }else{
+              setMessage('Tarjeta actualizada exitosamente'); // ⬅️ Mensaje de éxito del lado del cliente
+              setTimeout(() => {
+                  setMessage('');
+              }, 3000);
+          }
+      
+          // Opcional: Si la actualización fue exitosa, puedes redirigir al usuario
+          // por ejemplo: navigate('/manage-cards');
+          console.log("Tarjeta actualizada con éxito");
+        } catch (error) {
+          console.error("Error al actualizar la tarjeta:", error);
+        }
+      };
+
   const { id } = useParams();
 
   const [card, setCard] = useState(null);
@@ -66,11 +102,12 @@ const EditCard = () => {
             placeholder="Image"
             value={card.urlImage}
             onChange={handleChange}
-            className="border border-1 border-solid border-black rounded mb-2 p-1"
+            className="border-1 border-solid border-black rounded mb-2 p-1"
           />
           <button type="submit" className="bg-amber-500 p-2 cursor-pointer rounded text-white font-bold w-20 m-4">Save</button>
         </form>
       )}
+      <h2>{message}</h2>
     </>
   );
 };
