@@ -121,6 +121,28 @@ async function connectToDatabase() {
 //   }
 // });
 
+//ruta para Aactualizar una card
+app.put("/cards/:id", async (req, res) => {
+  try {
+    const cardId = req.params.id;
+    const updateCard = req.body;
+    // ⬅️ Convertimos el ID de la URL a un ObjectId
+    const result = await db.collection("cards").updateOne(
+      { _id: new ObjectId(cardId) }, // Filtro: encuentra el documento por su _id
+      { $set: updateCard } // Operador de actualización: establece los nuevos datos
+    );
+    // Verificamos si se modificó 1 documento
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "Tarjeta actualizada con éxito" });
+    } else {
+      res.status(404).json({ message: "No se encontró la tarjeta para actualizar" });
+    }
+  } catch (error) {
+    console.error("Error al actualizar tarjera:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
+
 //ruta para eliminar una card
 app.delete("/cards/:id", async (req, res) => {
   try {
