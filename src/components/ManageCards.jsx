@@ -4,6 +4,24 @@ const ManageCards = () => {
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState("");
 
+
+const handleDelete = async (cardId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/cards/${cardId}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      setCards(cards.filter((card) => card._id !== cardId));
+    }else {
+      throw new Error("No se pudo eliminar la tarjeta");
+    }
+  }catch (error) {
+      console.error("Error al eliminar la tarjeta", error);
+  }
+}
+
+
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -33,25 +51,34 @@ const ManageCards = () => {
       <h1 className="text-3xl font-bold text-center mt-6 mb-4">
         Administrar Tarjetas
       </h1>
-      <div className="searchBar flex items-center justify-center border-1 border-solid border-black rounded w-72 h-9 mx-auto mb-4">
         <input
-          className="w-64 h-9 p-2"
+          className="w-64 h-9 p-2 border-1 border-solid border-black rounded block mx-auto mb-4"
           type="text"
           name="search"
           placeholder={"Buscar"}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="search-icon">
-            <img src="src/assets/iconos/search.png" alt="search-icon" className="w-10 h-10 p-1 cursor-pointer"/>
-        </div>
-      </div>
 
       {/* Aquí vamos a mostrar la lista de tarjetas */}
       {cards.map((card) => (
         <div key={card._id}>
           <h3 className="text-xl font-bold mb-2 text-center">
             {card.spanish}-{card.english}
+            <button onClick={() => handleDelete(card._id)}>
+            <img
+              src="src\assets\iconos\delete-icon.png"
+              alt="icono-ingresar-datos"
+              className="w-5 h-5 ml-2 mr-2 cursor-pointer"
+            />
+            </button>
+            <button>
+            <img
+              src="src\assets\iconos\update.png"
+              alt="icono-ingresar-datos"
+              className="w-5 h-5 ml-2 mr-2 cursor-pointer"
+            />
+            </button>
           </h3>
         </div>
       ))}
