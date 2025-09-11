@@ -29,7 +29,7 @@ function App() {
               <Route path="/admin" element={<Admin />} />
               <Route path="/ingresartarjeta" element={<IngresarTarjeta />} />
               <Route path="/managecards" element={<ManageCards/>} />
-              <Route path="editartarjeta" element={<EditCard/>}/>
+              <Route path="editartarjeta/:id" element={<EditCard/>}/>
             </Route>
           </Routes>
         </Layout>
