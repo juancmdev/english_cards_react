@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 const ManageCards = () => {
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState("");
+  const [message, setMessage] = useState
 
 
 const handleDelete = async (cardId) => {
@@ -13,11 +14,21 @@ const handleDelete = async (cardId) => {
 
     if (response.ok) {
       setCards(cards.filter((card) => card._id !== cardId));
+      setMessage("Tarjeta eliminada exitosamente");
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
     }else {
+      // Si el servidor respondió con un error
+      setMessage("Error al eliminar la tarjeta");
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
       throw new Error("No se pudo eliminar la tarjeta");
     }
   }catch (error) {
       console.error("Error al eliminar la tarjeta", error);
+      setMessage('Ocurrió un error. Revisa la consola.'); // ⬅️ Mensaje de error del lado del cliente
   }
 }
 
@@ -63,7 +74,7 @@ const handleDelete = async (cardId) => {
       {/* Aquí vamos a mostrar la lista de tarjetas */}
       {cards.map((card) => (
         <div key={card._id}>
-          <h3 className="text-xl font-bold mb-2 text-center">
+          <div className="text-xl font-bold mb-2 text-center">
             {card.spanish}-{card.english}
             <button onClick={() => handleDelete(card._id)}>
             <img
@@ -79,7 +90,8 @@ const handleDelete = async (cardId) => {
               className="w-5 h-5 ml-2 mr-2 cursor-pointer"
             />
             </button>
-          </h3>
+          </div>
+          <h2>{message}</h2>
         </div>
       ))}
     </div>
