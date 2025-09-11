@@ -30,7 +30,7 @@ const ManageCards = () => {
           className="w-64 h-9 p-2"
           type="text"
           name="search"
-          placeholder="Buscar"
+          placeholder={"Buscar"}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
