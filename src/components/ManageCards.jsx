@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ManageCards = () => {
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleEdit = (cardId) => {
+    navigate(`/edit-card/${cardId}`);
+  }
 
 
 const handleDelete = async (cardId) => {
@@ -83,7 +90,7 @@ const handleDelete = async (cardId) => {
               className="w-5 h-5 ml-2 mr-2 cursor-pointer"
             />
             </button>
-            <button>
+            <button onClick={() => handleEdit(card._id)}>
             <img
               src="src\assets\iconos\update.png"
               alt="icono-ingresar-datos"
