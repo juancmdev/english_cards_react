@@ -141,6 +141,27 @@ app.delete("/cards/:id", async (req, res) => {
   }
 });
 
+//ruta para obtener una sola card
+app.get("/cards/:id", async (req, res) => {
+  try {
+    const cardId = req.params.id;
+    // ⬅️ Convertimos el ID de la URL a un ObjectId
+    const objectId = new ObjectId(cardId); 
+
+    const result = await db.collection("cards").findOne({ _id: objectId });
+
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: "No se encontró la tarjeta" });
+    }
+  } catch (error) {
+    console.error("Error al obtener la tarjeta:", error);
+    
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
+
 // **NUEVA RUTA para obtener los datos de las tarjetas**
 app.get("/cards", async (req, res) => {
   try {
