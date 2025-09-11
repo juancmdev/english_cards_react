@@ -9,7 +9,7 @@ const ManageCards = () => {
   const navigate = useNavigate();
 
   const handleEdit = (cardId) => {
-    navigate(`/edit-card/${cardId}`);
+    navigate(`/editartarjeta/${cardId}`);
   }
 
 
