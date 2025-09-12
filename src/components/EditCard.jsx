@@ -5,23 +5,26 @@ import { useEffect, useState } from "react";
 
 const EditCard = () => {
     const [message, setMessage] = useState('');
+    
+    
 
     const handleChange = (e) => {
         setCard({ ...card, [e.target.name]: e.target.value });
+        
       };
       
       const handleSubmit = async (e) => {
-         
+        const {_id, ...updateCard } = card
       
         e.preventDefault();
       
         try {
-          const response = await fetch(`http://localhost:5000/cards/${card._id}`, {
+          const response = await fetch(`http://localhost:5000/cards/${_id}`, {
             method: 'PUT', // ⬅️ Método HTTP para actualizar
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(card), // ⬅️ Enviamos los datos del estado
+            body: JSON.stringify(updateCard), // ⬅️ Enviamos los datos del estado
           });
       
           if (!response.ok) {
