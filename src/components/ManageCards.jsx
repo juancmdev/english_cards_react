@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const ManageCards = () => {
   const [cards, setCards] = useState([]);
@@ -101,6 +103,7 @@ const handleDelete = async (cardId) => {
           
         </div>
       ))}
+      <Link to={'/admin'} className="w-30 h 15 text-white text-center rounded-md font-bold p-2 mb-4 mt-4 block mx-auto bg-amber-500 cursor-pointer">Admin</Link>
     <h2 className="text-center text-3xl bg-amber-400 p-4 mt-4">{message}</h2>
     </div>
   );
