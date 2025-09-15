@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
 
+
 const EditCard = () => {
-    const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
     
     
 
@@ -35,10 +37,11 @@ const EditCard = () => {
               
               throw new Error("No se pudo actualizar la tarjeta");
           }else{
-              setMessage('Tarjeta actualizada exitosamente'); // ⬅️ Mensaje de éxito del lado del cliente
-              setTimeout(() => {
-                  setMessage('');
-              }, 3000);
+            setMessage('Tarjeta actualizada exitosamente'); // ⬅️ Mensaje de éxito del lado del cliente
+            setTimeout(() => {
+              setMessage('');
+              navigate('/managecards');
+            }, 3000);
           }
       
           // Opcional: Si la actualización fue exitosa, puedes redirigir al usuario
