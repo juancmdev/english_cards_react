@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -76,6 +76,7 @@ const EditCard = () => {
 
   return (
     <>
+    <h1 className="text-3xl font-bold text-center mt-6 mb-4">Edit Cards</h1>
       {card && (
         <form onSubmit={handleSubmit} className="bg-amber-200 w-58 h-auto flex flex-col items-center justify-center mx-auto p-6 rounded m-4">
           <input
@@ -113,6 +114,7 @@ const EditCard = () => {
           <button type="submit" className="bg-amber-500 p-2 cursor-pointer rounded text-white font-bold w-20 m-4">Save</button>
         </form>
       )}
+      <Link to={'/managecards'} className="w-35 h 15 text-white text-center rounded-md font-bold p-2 mb-4 mt-4 block mx-auto bg-amber-500 cursor-pointer text-s">Manage Cards</Link>
       <h2>{message}</h2>
     </>
   );
