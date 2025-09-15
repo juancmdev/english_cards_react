@@ -19,7 +19,7 @@ const Admin = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mx-auto text-center mt-4">
+      <h1 className="text-4xl font-bold mx-auto text-center mt-4">
         Hello to Admin Page
       </h1>
       <div
