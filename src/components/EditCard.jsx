@@ -10,6 +10,7 @@ const EditCard = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     // Validamos si los campos están vacíos
     if (!card.spanish || !card.english) {
       setMessage("Por favor, completa los campos de Spanish e English.");
@@ -20,7 +21,7 @@ const EditCard = () => {
     }
     const { _id, ...updateCard } = card;
 
-    e.preventDefault();
+    
 
     try {
       const response = await fetch(`http://localhost:5000/cards/${_id}`, {
@@ -90,7 +91,7 @@ const EditCard = () => {
             placeholder="Spanish"
             value={card.spanish}
             onChange={handleChange}
-            className="border border-1 border-solid border-black rounded mb-2 p-1"
+            className="border-1 border-solid border-black rounded mb-2 p-1"
           />
           <input
             type="text"
@@ -98,7 +99,7 @@ const EditCard = () => {
             placeholder="English"
             value={card.english}
             onChange={handleChange}
-            className="border border-1 border-solid border-black rounded mb-2 p-1"
+            className="border-1 border-solid border-black rounded mb-2 p-1"
           />
           <input
             type="text"
@@ -106,7 +107,7 @@ const EditCard = () => {
             placeholder="Category"
             value={card.category}
             onChange={handleChange}
-            className="border border-1 border-solid border-black rounded mb-2 p-1"
+            className="border-1 border-solid border-black rounded mb-2 p-1"
           />
           <input
             type="text"
