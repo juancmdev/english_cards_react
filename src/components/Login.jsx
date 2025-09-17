@@ -6,6 +6,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate(); // Aquí se declara el hook
 
   //Agregamos este hook para manejar la redirección
@@ -17,6 +19,14 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!username.trim() || !password.trim()) {
+      setMessage("Por favor, completa los campos de usuario y contraseña.");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return; // Detiene la ejecución si la validación falla
+    }
 
     const userData = {
       username: username,
@@ -40,12 +50,21 @@ const Login = () => {
       })
       .then((data) => {
         // ⬅️ Paso 2: Usar los datos de la respuesta para establecer la cookie
-        setCookie("token", data.token, { path: "/", secure: true, sameSite: "Lax" });
+        setCookie("token", data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Lax",
+        });
         console.log("Token", data.token); // ⬅️ Opcional: Para verificar en la consola
         navigate("/admin"); // ⬅️ Paso 3: Redirigir al usuario
       })
       .catch((error) => {
         console.error("Error:", error);
+        // Aquí manejas el error y muestras un mensaje al usuario
+        setMessage("Fallo en el inicio de sesión. Credenciales incorrectas.");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       });
   };
   return (
@@ -59,7 +78,6 @@ const Login = () => {
           name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required={true}
           placeholder="Username"
           className="border border-blue-500 rounded-lg p-2"
         />
@@ -68,7 +86,6 @@ const Login = () => {
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required={true}
           minLength={8}
           placeholder="Password"
           className="border border-blue-500 rounded-lg p-2"
@@ -79,6 +96,7 @@ const Login = () => {
           className="bg-blue-500 text-white rounded-lg p-2 cursor-pointer"
         />
       </form>
+      <h2 className="text-center text-3xl text-black bg-amber-400 p-4 mt-4">{message}</h2>
     </>
   );
 };
