@@ -34,7 +34,7 @@ const Flashcard = ({ cardData }) => {
             <div className={`front p-6 absolute top-0 left-0 [backface-visibility:hidden] flex justify-center items-center h-full w-full transform -rotate-y-360`}>
               <div className="flex flex-col items-center">
                 <div className={urlImage ? 'text-3xl' : 'text-4xl'}>
-                  {spanish}
+                  {english}
                 </div>
                 <div>
                   {urlImage && (
@@ -46,7 +46,7 @@ const Flashcard = ({ cardData }) => {
             </div>
                   
                 <div className={`back [backface-visibility:hidden] absolute top-0 left-0  flex justify-center items-center h-full w-full transform -rotate-y-180`}>
-                    {english}
+                    {spanish}
                 </div>
             </div>
         </>
